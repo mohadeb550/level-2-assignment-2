@@ -17,6 +17,25 @@ const product_model_1 = __importDefault(require("./product.model"));
 const addProductIntoDB = (product) => __awaiter(void 0, void 0, void 0, function* () {
     return yield product_model_1.default.create(product);
 });
+const getAllProductsFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    return yield product_model_1.default.find({});
+});
+const getProductByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield product_model_1.default.findById(id);
+});
+const updateProductById = (id, newChanges) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedDoc = {
+        $set: Object.assign({}, newChanges)
+    };
+    return yield product_model_1.default.updateOne({ _id: id }, updatedDoc);
+});
+const deleteProductById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield product_model_1.default.deleteOne({ _id: id });
+});
 exports.ProductServices = {
     addProductIntoDB,
+    getAllProductsFromDB,
+    getProductByIdFromDB,
+    updateProductById,
+    deleteProductById
 };

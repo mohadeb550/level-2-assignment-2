@@ -7,8 +7,8 @@ const router = express.Router();
 // create a new product 
 router.post('/' , ProductControllers.createProduct)
 
-// get all products 
-router.get('/', ProductControllers.getAllProducts)
+// get products 
+router.get('/', ProductControllers.getProducts)
 
 // get single product by id 
 router.get('/:productId', ProductControllers.getProductById)

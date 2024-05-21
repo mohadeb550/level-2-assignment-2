@@ -29,10 +29,11 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
-// get all products 
-const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// get products 
+const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { searchTerm } = req.query;
     try {
-        const data = yield product_services_1.ProductServices.getAllProductsFromDB();
+        const data = yield product_services_1.ProductServices.getProductsFromDB(searchTerm);
         res.status(200).json({
             "success": true,
             "message": "Products fetched successfully!",
@@ -100,5 +101,5 @@ const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.ProductControllers = {
-    createProduct, getAllProducts, getProductById, updateSingleProduct, deleteProduct
+    createProduct, getProducts, getProductById, updateSingleProduct, deleteProduct
 };

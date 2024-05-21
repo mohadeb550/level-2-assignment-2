@@ -24,18 +24,6 @@ const getOrdersFromDB = (userEmail) => __awaiter(void 0, void 0, void 0, functio
     }
     return yield order_model_1.default.find(query);
 });
-// const getProductByIdFromDB = async (id: string)=> {
-//     return await Product.findById(id);
-// }
-// const updateProductById = async (id: string, newChanges: object )=> {
-//     const updatedDoc = {
-//         $set : {...newChanges}
-//     }
-//     return await Product.updateOne({ _id: id}, updatedDoc)
-// }
-// const deleteProductById = async (id: string )=> {
-//     return await Product.deleteOne({ _id: id})
-// }
 exports.OrderServices = {
     addOrderIntoDB, getOrdersFromDB
 };

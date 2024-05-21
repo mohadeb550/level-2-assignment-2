@@ -6,8 +6,17 @@ const addProductIntoDB = async (product: TProduct) => {
     return await Product.create(product)    
 }
 
-const getAllProductsFromDB = async ()=> {
-    return await Product.find({});
+const getProductsFromDB = async (searchValue: string)=> {
+
+   const query = searchValue? { 
+   $or : [
+    { name: { $regex : searchValue , $options: "i"}},
+    { description: { $regex : searchValue , $options: "i"}},
+    { category: { $regex : searchValue , $options: "i"}},
+   ]
+    } : {}
+
+    return await Product.find(query);
 }
 
 const getProductByIdFromDB = async (id: string)=> {
@@ -31,7 +40,7 @@ const deleteProductById = async (id: string )=> {
 
 export const ProductServices = {
     addProductIntoDB,
-    getAllProductsFromDB,
+    getProductsFromDB,
     getProductByIdFromDB,
     updateProductById,
     deleteProductById

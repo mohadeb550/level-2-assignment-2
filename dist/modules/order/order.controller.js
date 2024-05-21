@@ -29,7 +29,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
-// get all orders 
+// get orders 
 const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.query;
     try {
@@ -37,59 +37,6 @@ const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(200).json({
             "success": true,
             "message": "Orders fetched successfully!",
-            "data": data
-        });
-    }
-    catch (error) {
-        res.json({
-            "success": false,
-            "message": error.message,
-        });
-    }
-});
-// get product by id 
-const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const data = yield ProductServices.getProductByIdFromDB(req.params.productId);
-        res.status(200).json({
-            "success": true,
-            "message": "Product fetched successfully!",
-            "data": data
-        });
-    }
-    catch (error) {
-        res.json({
-            "success": false,
-            "message": error.message,
-        });
-    }
-});
-// update a single product 
-const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { productId } = req.params;
-    const newChanges = req.body;
-    try {
-        const data = yield ProductServices.updateProductById(productId, newChanges);
-        res.status(200).json({
-            "success": true,
-            "message": "Product updated successfully!",
-            "data": data
-        });
-    }
-    catch (error) {
-        res.json({
-            "success": false,
-            "message": error.message,
-        });
-    }
-});
-// delete a product 
-const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const data = yield ProductServices.deleteProductById(req.params.productId);
-        res.status(200).json({
-            "success": true,
-            "message": "Product deleted successfully!",
             "data": data
         });
     }

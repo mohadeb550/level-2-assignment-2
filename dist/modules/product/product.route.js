@@ -9,8 +9,8 @@ const product_controller_1 = require("./product.controller");
 const router = express_1.default.Router();
 // create a new product 
 router.post('/', product_controller_1.ProductControllers.createProduct);
-// get all products 
-router.get('/', product_controller_1.ProductControllers.getAllProducts);
+// get products 
+router.get('/', product_controller_1.ProductControllers.getProducts);
 // get single product by id 
 router.get('/:productId', product_controller_1.ProductControllers.getProductById);
 // update a product by id 

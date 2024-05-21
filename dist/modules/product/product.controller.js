@@ -8,14 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductControllers = void 0;
 const product_services_1 = require("./product.services");
+const product_validation_1 = __importDefault(require("./product.validation"));
 // create a new product 
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const product = req.body;
     try {
-        const data = yield product_services_1.ProductServices.addProductIntoDB(product);
+        // validating product data by zod  
+        const zodParsedProduct = product_validation_1.default.parse(product);
+        const data = yield product_services_1.ProductServices.addProductIntoDB(zodParsedProduct);
         res.status(200).json({
             "success": true,
             "message": "Product created successfully!",
@@ -36,7 +42,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const data = yield product_services_1.ProductServices.getProductsFromDB(searchTerm);
         res.status(200).json({
             "success": true,
-            "message": "Products fetched successfully!",
+            "message": searchTerm ? `Products matching search term '${searchTerm}' fetched successfully!` : 'Products fetched successfully!',
             "data": data
         });
     }

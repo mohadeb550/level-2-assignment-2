@@ -1,13 +1,21 @@
 
 import { Request, Response } from "express";
 import { OrderServices } from "./order.services";
+import Product from "../product/product.model";
+import orderValidationSchema from "./order.validation";
+
 
 
 // create a new order 
 const createOrder = async (req : Request, res: Response) => {
     const order = req.body;
    try{
-    const data =  await OrderServices.addOrderIntoDB(order);
+     // validating order data by zod  
+     const zodParsedData = orderValidationSchema.parse(order)
+
+    // const isExist = await Product.exists({ _id: order.productId})
+
+    const data =  await OrderServices.addOrderIntoDB(zodParsedData);
 
     res.status(200).json({
         "success" : true,
@@ -42,8 +50,6 @@ const getOrders = async (req : Request, res: Response) => {
     })
    }
 }
-
-
 
 
 export const OrderControllers = {

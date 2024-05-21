@@ -9,10 +9,6 @@ const order_controller_1 = require("./order.controller");
 const router = express_1.default.Router();
 // create a new order
 router.post('/', order_controller_1.OrderControllers.createOrder);
-// get single order or all
+// get single order by email or all
 router.get('/', order_controller_1.OrderControllers.getOrders);
-// // update a product by id 
-// router.put('/:productId', ProductControllers.updateSingleProduct)
-// // delete a product by id 
-// router.delete('/:productId', ProductControllers.deleteProduct)
 exports.OrderRouter = router;

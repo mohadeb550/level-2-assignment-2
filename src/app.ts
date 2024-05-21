@@ -13,9 +13,15 @@ app.use('/api/orders', OrderRouter)
 
 
 
-
 app.get('/', (req, res) => {
   res.send('Hello World!')
+})
+
+app.all('*', (req, res) => {
+  res.status(404).json({
+    "success" : false,
+    "message" : "Route not found"
+  })
 })
 
 export default app

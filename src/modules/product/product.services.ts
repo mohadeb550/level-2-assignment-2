@@ -6,6 +6,7 @@ const addProductIntoDB = async (product: TProduct) => {
     return await Product.create(product)    
 }
 
+
 const getProductsFromDB = async (searchValue: string)=> {
 
    const query = searchValue? { 
@@ -18,6 +19,8 @@ const getProductsFromDB = async (searchValue: string)=> {
 
     return await Product.find(query);
 }
+
+
 
 const getProductByIdFromDB = async (id: string)=> {
     return await Product.findById(id);

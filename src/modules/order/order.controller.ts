@@ -1,7 +1,6 @@
 
 import { Request, Response } from "express";
 import { OrderServices } from "./order.services";
-import Product from "../product/product.model";
 import orderValidationSchema from "./order.validation";
 
 

@@ -21,13 +21,8 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         // validating order data by zod  
         const zodParsedData = order_validation_1.default.parse(order);
-        // const isExist = await Product.exists({ _id: order.productId})
-        const data = yield order_services_1.OrderServices.addOrderIntoDB(zodParsedData);
-        res.status(200).json({
-            "success": true,
-            "message": "Order created successfully!",
-            "data": data
-        });
+        const result = yield order_services_1.OrderServices.addOrderIntoDB(zodParsedData);
+        res.json(result);
     }
     catch (error) {
         res.json({
@@ -40,12 +35,8 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.query;
     try {
-        const data = yield order_services_1.OrderServices.getOrdersFromDB(email);
-        res.status(200).json({
-            "success": true,
-            "message": "Orders fetched successfully!",
-            "data": data
-        });
+        const result = yield order_services_1.OrderServices.getOrdersFromDB(email);
+        res.status(200).json(result);
     }
     catch (error) {
         res.json({

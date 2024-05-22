@@ -34,7 +34,8 @@ const updateProductById = (id, newChanges) => __awaiter(void 0, void 0, void 0, 
     const updatedDoc = {
         $set: Object.assign({}, newChanges)
     };
-    return yield product_model_1.default.updateOne({ _id: id }, updatedDoc);
+    // return await Product.updateOne({ _id: id}, updatedDoc)
+    return yield product_model_1.default.findByIdAndUpdate(id, updatedDoc);
 });
 const deleteProductById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return yield product_model_1.default.deleteOne({ _id: id });

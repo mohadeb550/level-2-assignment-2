@@ -30,7 +30,8 @@ const updateProductById = async (id: string, newChanges: object )=> {
     const updatedDoc = {
         $set : {...newChanges}
     }
-    return await Product.updateOne({ _id: id}, updatedDoc)
+    // return await Product.updateOne({ _id: id}, updatedDoc)
+    return await Product.findByIdAndUpdate(id, updatedDoc)
 }
 
 
